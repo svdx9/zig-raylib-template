@@ -1,0 +1,16 @@
+.{
+    .name = "my-game",
+    .version = "0.0.1",
+    .paths = .{""},
+    .dependencies = .{
+        .raylib = .{
+            // https://github.com/raysan5/raylib/commit/fec96137e8d10ee6c88914fbe5e5429c13ee1dac 4.5
+            .url = "https://github.com/raysan5/raylib/archive/fec96137e8d10ee6c88914fbe5e5429c13ee1dac.tar.gz",
+            .hash = "12206531f836d1885a0c850e5c96df0d2046c51b18687a2ca1c5dc7828d3ffb6d7b5",
+        },
+        .raygui = .{
+            .url = "https://github.com/raysan5/raygui/archive/refs/tags/4.0.tar.gz",
+            .hash = "1220b64eaeaf55609b3152b64d108ea73981c9689e783bddc68c80e77d275ebac164",
+        },
+    },
+}

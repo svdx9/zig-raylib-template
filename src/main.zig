@@ -1,24 +1,34 @@
 const std = @import("std");
 
-pub fn main() !void {
-    // Prints to stderr (it's a shortcut based on `std.io.getStdErr()`)
-    std.debug.print("All your {s} are belong to us.\n", .{"codebase"});
+// const raylib = @import("raylib");
+// const c = @cImport({
+//     @cInclude("raygui.h"); // Required for GUI controls
+// });
 
-    // stdout is for the actual output of your application, for example if you
-    // are implementing gzip, then only the compressed bytes should be sent to
-    // stdout, not any debugging messages.
-    const stdout_file = std.io.getStdOut().writer();
-    var bw = std.io.bufferedWriter(stdout_file);
-    const stdout = bw.writer();
+const raylib = @cImport({
+    @cInclude("raylib.h");
+    @cInclude("raymath.h");
+    @cInclude("rlgl.h");
+    @cInclude("raygui.h");
+    // @cInclude("style_dark.h");
+});
 
-    try stdout.print("Run `zig build test` to run the tests.\n", .{});
+pub fn main() void {
+    raylib.SetConfigFlags(raylib.FLAG_WINDOW_RESIZABLE);
+    raylib.InitWindow(800, 800, "hello world!");
+    raylib.SetTargetFPS(60);
 
-    try bw.flush(); // don't forget to flush!
-}
+    defer raylib.CloseWindow();
 
-test "simple test" {
-    var list = std.ArrayList(i32).init(std.testing.allocator);
-    defer list.deinit(); // try commenting this out and see if zig detects the memory leak!
-    try list.append(42);
-    try std.testing.expectEqual(@as(i32, 42), list.pop());
+    while (!raylib.WindowShouldClose()) {
+        raylib.BeginDrawing();
+        defer raylib.EndDrawing();
+
+        raylib.ClearBackground(raylib.BLACK);
+        raylib.DrawFPS(10, 10);
+        var start_angle: f32 = 0;
+        _ = raylib.GuiSliderBar(.{ .x = 600, .y = 40, .width = 120, .height = 20 }, "StartAngle", null, &start_angle, -450, 450);
+
+        raylib.DrawText("hello world!", 100, 100, 20, raylib.YELLOW);
+    }
 }
