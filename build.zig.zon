@@ -1,5 +1,5 @@
 .{
-    .name = "my-game",
+    .name = "raylib-template",
     .version = "0.0.1",
     .paths = .{""},
     .dependencies = .{

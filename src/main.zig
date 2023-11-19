@@ -1,10 +1,5 @@
 const std = @import("std");
 
-// const raylib = @import("raylib");
-// const c = @cImport({
-//     @cInclude("raygui.h"); // Required for GUI controls
-// });
-
 const raylib = @cImport({
     @cInclude("raylib.h");
     @cInclude("raymath.h");
@@ -26,8 +21,6 @@ pub fn main() void {
 
         raylib.ClearBackground(raylib.BLACK);
         raylib.DrawFPS(10, 10);
-        var start_angle: f32 = 0;
-        _ = raylib.GuiSliderBar(.{ .x = 600, .y = 40, .width = 120, .height = 20 }, "StartAngle", null, &start_angle, -450, 450);
 
         raylib.DrawText("hello world!", 100, 100, 20, raylib.YELLOW);
     }

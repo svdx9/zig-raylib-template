@@ -1,3 +1,5 @@
+const exe_artifact_name = "hello";
+
 const std = @import("std");
 // const raylib = @import("external/raylib/build.zig");
 
@@ -41,7 +43,7 @@ pub fn build(b: *std.Build) void {
     raygui_artifact.linkLibrary(raylib_artifact); // raygui depends on raylib this should be linked in the artifact but sure
 
     const exe = b.addExecutable(.{
-        .name = "zg1",
+        .name = exe_artifact_name,
         // In this case the main source file is merely a path, however, in more
         // complicated build scripts, this could be a generated file.
         .root_source_file = .{ .path = "src/main.zig" },
